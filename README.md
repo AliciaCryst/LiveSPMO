@@ -1,6 +1,6 @@
 # SPMO holdings treemap
 
-Downloads Invesco's SPMO holdings CSV export, writes `spmo.txt`, and fetches the latest available **regular-hours one-minute bar** for every equity symbol with yfinance (falling back to daily bars when needed). It writes an interactive, searchable `spmo.html` treemap. Rectangle area uses Invesco's percentage weight, green/red compares Yahoo's latest bar with the prior trading session's final bar, and missing quotes appear gray with `N/A`. The source date and quote time are displayed in the chart.
+Downloads Invesco's current SPMO holdings JSON, writes `spmo.txt`, and fetches the latest available **regular-hours one-minute bar** for every equity symbol with yfinance (falling back to daily bars when needed). It writes an interactive, searchable `spmo.html` treemap. Rectangle area uses Invesco's percentage weight, green/red compares Yahoo's latest bar with the prior trading session's final bar, and missing quotes appear gray with `N/A`. The source date and quote time are displayed in the chart.
 
 ## Use locally
 
@@ -11,10 +11,10 @@ python -m pip install -r requirements.txt
 python generate_spmo.py
 ```
 
-To process a saved Invesco export without downloading it again:
+To process a saved Invesco JSON response or legacy CSV export without downloading it again:
 
 ```bash
-python generate_spmo.py --source /path/to/SPMO_holdings.csv
+python generate_spmo.py --source /path/to/spmo-holdings.json
 ```
 
 Open `spmo.html` in a browser. D3.js loads from jsDelivr, so the browser needs internet access. The text file is tab separated: `symbol`, `company`, and `weight_pct` (percentage points). Each published ticker is kept, including separate share classes. Dot or slash tickers become Yahoo's dash form. No weight scaling is applied. Common stocks, REITs, and ADRs are included; cash and money-market rows are excluded.
@@ -30,6 +30,6 @@ Quotes come from yfinance one-minute regular-hours bars and, for tickers without
 
 The workflow runs daily at **6:35 AM America/Los_Angeles**, with daylight saving handled by GitHub. Runs can be delayed by GitHub's scheduler. A job will fail before committing or publishing if the download, parsing, or most quote lookups fail. Invesco's source data can lag the market on weekends and holidays.
 
-The included starter `spmo.html` and `spmo.txt` contain a September 24, 2026 snapshot obtained from ETFIQ's freely reusable book, whose source field points to Invesco's issuer feed. Prices are marked `N/A`. The first successful workflow run replaces both with the latest holdings from Invesco's CSV and current Yahoo prices.
+The included starter `spmo.html` and `spmo.txt` contain a September 24, 2026 snapshot obtained from ETFIQ's freely reusable book, whose source field points to Invesco's issuer feed. Prices are marked `N/A`. The first successful workflow run replaces both with the latest holdings from Invesco's JSON feed and current Yahoo prices.
 
-Sources: [Invesco SPMO holdings page](https://www.invesco.com/us/financial-products/etfs/holdings?audienceType=Investor&ticker=SPMO), [Invesco CSV export](https://www.invesco.com/us/financial-products/etfs/holdings/main/holdings/0?audienceType=Investor&action=download&ticker=SPMO), [ETFIQ open-data terms](https://etfiq.com/data/), [GitHub schedule syntax](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax#onschedule), [Pages publishing setup](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site).
+Sources: [Invesco SPMO holdings page](https://www.invesco.com/us/en/financial-products/etfs/invesco-sp-500-momentum-etf.html), [Invesco holdings JSON](https://dng-api.invesco.com/cache/v1/accounts/en_US/shareclasses/46138E339/holdings/fund?idType=cusip&productType=ETF), [ETFIQ open-data terms](https://etfiq.com/data/), [GitHub schedule syntax](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax#onschedule), [Pages publishing setup](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site).

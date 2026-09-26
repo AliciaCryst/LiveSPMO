@@ -1,4 +1,5 @@
 import unittest
+import json
 from unittest.mock import patch
 
 try:
@@ -10,6 +11,30 @@ from generate_spmo import _quote_from_frame, get_quotes, parse_holdings
 
 
 class HoldingsTests(unittest.TestCase):
+    def test_current_json_feed_is_parsed(self):
+        payload = {
+            "effectiveDate": "2026-09-26",
+            "effectiveBusinessDate": "2026-09-25",
+            "holdings": [
+                {"ticker": "JNJ", "issuerName": "Johnson &amp; Johnson",
+                 "percentageOfTotalNetAssets": 40, "securityTypeName": "Common Stock"},
+                {"ticker": "BRK.B", "issuerName": "Berkshire Hathaway",
+                 "percentageOfTotalNetAssets": 35, "securityTypeName": "Common Stock"},
+                {"ticker": "WELL", "issuerName": "Welltower Inc",
+                 "percentageOfTotalNetAssets": 25, "securityTypeName": "Real Estate Investment Trust"},
+                {"ticker": "USD", "issuerName": "Cash", "percentageOfTotalNetAssets": 1,
+                 "securityTypeName": "Currency"},
+            ],
+        }
+        holdings, date, excluded = parse_holdings(json.dumps(payload).encode(), min_holdings=3)
+        self.assertEqual(date, "2026-09-25")
+        self.assertEqual([(h.ticker, h.name, h.weight) for h in holdings], [
+            ("JNJ", "Johnson & Johnson", 40.0),
+            ("BRK-B", "Berkshire Hathaway", 35.0),
+            ("WELL", "Welltower Inc", 25.0),
+        ])
+        self.assertEqual(excluded, [])
+
     def test_published_symbols_are_preserved_and_unquotable_rows_removed(self):
         content = b'''\xef\xbb\xbfTicker,Company,Share/ Par,% TNA,Class of shares,CUSIP,Market value
 "GOOGL","Alphabet Inc Class A","1,000","35%","Common Stock","X","$35"
@@ -36,6 +61,10 @@ class HoldingsTests(unittest.TestCase):
     def test_missing_as_of_date_is_rejected(self):
         with self.assertRaisesRegex(ValueError, "# as of"):
             parse_holdings(b'Ticker,Company,Share/ Par,% TNA,Class of shares,CUSIP,Market value\n')
+
+    def test_json_without_holdings_is_rejected(self):
+        with self.assertRaisesRegex(ValueError, "holdings list"):
+            parse_holdings(b'{"effectiveDate":"2026-09-26"}')
 
     @unittest.skipIf(pd is None, "pandas is not installed")
     def test_quotes_use_previous_valid_close_and_handle_missing(self):

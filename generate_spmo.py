@@ -7,6 +7,7 @@ import argparse
 import csv
 from dataclasses import dataclass
 from datetime import datetime, timezone
+from html import unescape
 from io import StringIO
 import json
 import logging
@@ -18,8 +19,8 @@ from urllib.request import Request, urlopen
 
 
 SOURCE_URL = (
-    "https://www.invesco.com/us/financial-products/etfs/holdings/main/holdings/0"
-    "?audienceType=Investor&action=download&ticker=SPMO"
+    "https://dng-api.invesco.com/cache/v1/accounts/en_US/shareclasses/"
+    "46138E339/holdings/fund?idType=cusip&productType=ETF"
 )
 HERE = Path(__file__).resolve().parent
 SYMBOL_PATTERN = re.compile(r"[A-Z][A-Z0-9]{0,9}(?:-[A-Z0-9]{1,3})?\Z")
@@ -40,13 +41,13 @@ def download_holdings() -> bytes:
         try:
             request = Request(SOURCE_URL, headers={
                 "User-Agent": (
-                    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
-                    "(KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+                    "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
+                    "(KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36"
                 ),
-                "Accept": "text/csv,application/csv,text/plain,*/*",
+                "Accept": "application/json",
                 "Referer": (
-                    "https://www.invesco.com/us/financial-products/etfs/holdings"
-                    "?audienceType=Investor&ticker=SPMO"
+                    "https://www.invesco.com/us/en/financial-products/etfs/"
+                    "invesco-sp-500-momentum-etf.html"
                 ),
             })
             with urlopen(request, timeout=45) as response:
@@ -61,14 +62,70 @@ def download_holdings() -> bytes:
     raise RuntimeError("Could not download Invesco SPMO holdings") from last_error
 
 
-def parse_holdings(content: bytes, min_holdings: int = 80) -> tuple[list[Holding], str, list[tuple[str, str, float]]]:
-    """Parse Invesco's SPMO CSV, keeping quoteable equity rows."""
+def _validate_holdings(result: list[Holding], source_name: str, min_holdings: int) -> None:
+    total_weight = sum(item.weight for item in result)
+    if len(result) < min_holdings or not 95 < total_weight < 101:
+        raise ValueError(
+            f"Unexpected SPMO holdings count or total weight; {source_name} format may have changed"
+        )
+
+
+def _parse_json_holdings(
+    content: bytes, min_holdings: int
+) -> tuple[list[Holding], str, list[tuple[str, str, float]]]:
+    payload = json.loads(content)
+    rows = payload.get("holdings")
+    if not isinstance(rows, list):
+        raise ValueError("Invesco response did not contain a holdings list")
+    holdings_as_of = str(
+        payload.get("effectiveBusinessDate") or payload.get("effectiveDate") or "unknown"
+    )
+    if holdings_as_of == "unknown":
+        raise ValueError("Invesco response did not contain an effective date")
+
+    by_ticker: dict[str, Holding] = {}
+    excluded: list[tuple[str, str, float]] = []
+    for row in rows:
+        if not isinstance(row, dict):
+            continue
+        class_name = str(row.get("securityTypeName") or "").strip()
+        if class_name not in EQUITY_CLASSES:
+            continue
+        name = " ".join(unescape(str(row.get("issuerName") or "")).split())
+        original_ticker = str(row.get("ticker") or "").strip().upper()
+        raw_weight = row.get("percentageOfTotalNetAssets")
+        if not name or not original_ticker or isinstance(raw_weight, bool):
+            continue
+        try:
+            weight = float(raw_weight)
+        except (TypeError, ValueError):
+            continue
+        if not math.isfinite(weight) or weight <= 0:
+            continue
+        ticker = original_ticker.replace(".", "-").replace("/", "-")
+        if not SYMBOL_PATTERN.fullmatch(ticker):
+            excluded.append((name, original_ticker, weight))
+            continue
+        previous = by_ticker.get(ticker)
+        by_ticker[ticker] = Holding(ticker, name, weight + (previous.weight if previous else 0))
+
+    result = sorted(by_ticker.values(), key=lambda item: (-item.weight, item.ticker))
+    _validate_holdings(result, "API", min_holdings)
+    return result, holdings_as_of, excluded
+
+
+def _parse_csv_holdings(
+    content: bytes, min_holdings: int
+) -> tuple[list[Holding], str, list[tuple[str, str, float]]]:
+    """Retain support for previously downloaded Invesco CSV exports."""
     text = content.decode("utf-8-sig")
     holdings_as_of = "unknown"
     header: list[str] | None = None
     by_ticker: dict[str, Holding] = {}
     excluded: list[tuple[str, str, float]] = []
     for raw_line in text.splitlines():
+        if not raw_line.strip():
+            continue
         as_of_match = re.search(r"#\s*as of\s*(\d{4}-\d{2}-\d{2})", raw_line, re.I)
         if as_of_match:
             holdings_as_of = as_of_match.group(1)
@@ -101,14 +158,21 @@ def parse_holdings(content: bytes, min_holdings: int = 80) -> tuple[list[Holding
         previous = by_ticker.get(ticker)
         by_ticker[ticker] = Holding(ticker, name, weight + (previous.weight if previous else 0))
     result = sorted(by_ticker.values(), key=lambda item: (-item.weight, item.ticker))
-    total_weight = sum(item.weight for item in result)
     if header is None:
         raise ValueError("Could not find Ticker, Company and % TNA columns in Invesco CSV")
     if holdings_as_of == "unknown":
         raise ValueError("Could not find '# as of YYYY-MM-DD' in Invesco CSV")
-    if len(result) < min_holdings or not 95 < total_weight < 101:
-        raise ValueError("Unexpected SPMO holdings count or total weight; CSV format may have changed")
+    _validate_holdings(result, "CSV", min_holdings)
     return result, holdings_as_of, excluded
+
+
+def parse_holdings(
+    content: bytes, min_holdings: int = 80
+) -> tuple[list[Holding], str, list[tuple[str, str, float]]]:
+    """Parse the current Invesco JSON or a legacy downloaded CSV."""
+    if content.lstrip().startswith(b"{"):
+        return _parse_json_holdings(content, min_holdings)
+    return _parse_csv_holdings(content, min_holdings)
 
 
 def _quote_from_frame(frame, symbol: str) -> dict | None:
@@ -237,7 +301,10 @@ def create_outputs(holdings: list[Holding], as_of: str, quotes: dict[str, dict],
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--source", type=Path, help="Local Invesco SPMO CSV for testing; default downloads it")
+    parser.add_argument(
+        "--source", type=Path,
+        help="Local Invesco SPMO JSON or legacy CSV for testing; default downloads JSON",
+    )
     parser.add_argument("--output-dir", type=Path, default=HERE)
     parser.add_argument("--quote-batch-size", type=int, default=10)
     parser.add_argument("--quote-delay", type=float, default=2.0, help="Seconds between Yahoo batches")
