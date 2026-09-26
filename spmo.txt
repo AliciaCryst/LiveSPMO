@@ -1,0 +1,101 @@
+# SPMO holdings as of 2026-09-24 starter snapshot; weight_pct is percentage points
+symbol	company	weight_pct
+MU	Micron Technology Inc	9.580000
+AAPL	Apple Inc	9.012000
+INTC	Intel Corp	5.849000
+AMD	Advanced Micro Devices Inc	5.755000
+GOOGL	Alphabet Inc	4.757000
+JNJ	Johnson & Johnson	4.581000
+GOOG	Alphabet Inc	3.825000
+XOM	ExxonMobil Holdings Corp	3.010000
+LRCX	Lam Research Corp	2.783000
+SNDK	Sandisk Corp	2.762000
+AMAT	Applied Materials Inc	2.556000
+CSCO	Cisco Systems Inc	2.269000
+STX	Seagate Technology Holdings PLC	2.217000
+MRK	Merck & Co Inc	2.167000
+CAT	Caterpillar Inc	1.983000
+WDC	Western Digital Corp	1.751000
+PANW	Palo Alto Networks Inc	1.692000
+UNH	UnitedHealth Group Inc	1.562000
+KO	Coca-Cola Co/The	1.542000
+KLAC	KLA Corp	1.140000
+MS	Morgan Stanley	1.093000
+DELL	Dell Technologies Inc	1.072000
+GS	Goldman Sachs Group Inc/The	1.055000
+RTX	RTX Corp	1.044000
+MRVL	Marvell Technology Inc	1.013000
+C	Citigroup Inc	0.917000
+LITE	Lumentum Holdings Inc	0.887000
+ADI	Analog Devices Inc	0.877000
+VLO	Valero Energy Corp	0.866000
+WELL	Welltower Inc	0.827000
+MPC	Marathon Petroleum Corp	0.682000
+BMY	Bristol-Myers Squibb Co	0.640000
+BNY	Bank of New York Mellon Corp/The	0.618000
+CVS	CVS Health Corp	0.616000
+PSX	Phillips 66	0.601000
+PLD	Prologis Inc	0.581000
+GLW	Corning Inc	0.561000
+ROST	Ross Stores Inc	0.540000
+CB	Chubb Ltd	0.529000
+HPE	Hewlett Packard Enterprise Co	0.509000
+PH	Parker-Hannifin Corp	0.471000
+USB	US Bancorp	0.452000
+LMT	Lockheed Martin Corp	0.446000
+CIEN	Ciena Corp	0.446000
+TER	Teradyne Inc	0.434000
+HWM	Howmet Aerospace Inc	0.426000
+CSX	CSX Corp	0.415000
+TRV	Travelers Cos Inc/The	0.404000
+PWR	Quanta Services Inc	0.396000
+PNC	PNC Financial Services Group Inc/The	0.385000
+SPG	Simon Property Group Inc	0.373000
+FDX	FedEx Corp	0.366000
+CMI	Cummins Inc	0.363000
+JCI	Johnson Controls International plc	0.354000
+GM	General Motors Co	0.352000
+FIX	Comfort Systems USA Inc	0.351000
+MNST	Monster Beverage Corp	0.343000
+NUE	Nucor Corp	0.343000
+TRGP	Targa Resources Corp	0.341000
+KEYS	Keysight Technologies Inc	0.323000
+MAR	Marriott International Inc/MD	0.320000
+STT	State Street Corp	0.313000
+MPWR	Monolithic Power Systems Inc	0.312000
+TGT	Target Corp	0.306000
+COHR	Coherent Corp	0.260000
+WAB	Westinghouse Air Brake Technologies Corp	0.239000
+AFL	Aflac Inc	0.235000
+CAH	Cardinal Health Inc	0.223000
+VTR	Ventas Inc	0.220000
+DAL	Delta Air Lines Inc	0.213000
+STLD	Steel Dynamics Inc	0.201000
+FLEX	Flex Ltd	0.198000
+CNC	Centene Corp	0.194000
+ADM	Archer-Daniels-Midland Co	0.186000
+NTAP	NetApp Inc	0.174000
+VTRS	Viatris Inc	0.144000
+BIIB	Biogen Inc	0.144000
+NTRS	Northern Trust Corp	0.144000
+CFG	Citizens Financial Group Inc	0.136000
+PFG	Principal Financial Group Inc	0.122000
+DGX	Quest Diagnostics Inc	0.117000
+CASY	Casey's General Stores Inc	0.112000
+HST	Host Hotels & Resorts Inc	0.099000
+EXPD	Expeditors International of Washington Inc	0.098000
+EIX	Edison International	0.097000
+INCY	Incyte Corp	0.096000
+JBHT	JB Hunt Transport Services Inc	0.093000
+NDSN	Nordson Corp	0.082000
+APA	APA Corp	0.080000
+DD	DuPont de Nemours Inc	0.080000
+IEX	IDEX Corp	0.079000
+L	Loews Corp	0.078000
+EVRG	Evergy Inc	0.068000
+AIZ	Assurant Inc	0.066000
+ECHO	EchoStar Corp	0.055000
+IVZ	Invesco Ltd	0.052000
+FRT	Federal Realty Investment Trust	0.048000
+BEN	Franklin Templeton Inc	0.043000
+DVA	DaVita Inc	0.026000
