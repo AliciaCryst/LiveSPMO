@@ -1,101 +1,101 @@
-# SPMO holdings as of 2026-10-22; weight_pct is percentage points
+# SPMO holdings as of 2026-10-23; weight_pct is percentage points
 symbol	company	weight_pct
-AAPL	Apple Inc	10.259245
-MU	Micron Technology Inc	8.340905
-AMD	Advanced Micro Devices Inc	5.101386
-JNJ	Johnson & Johnson	4.974130
-GOOGL	Alphabet Inc	4.947562
-INTC	Intel Corp	4.310542
-GOOG	Alphabet Inc	3.975027
-XOM	ExxonMobil Holdings Corp	3.634190
-CSCO	Cisco Systems Inc	2.443643
-MRK	Merck & Co Inc	2.368160
-LRCX	Lam Research Corp	2.287722
-AMAT	Applied Materials Inc	2.222633
-SNDK	Sandisk Corp	2.180695
-UNH	UnitedHealth Group Inc	1.944072
-CAT	Caterpillar Inc	1.904699
-KO	Coca-Cola Co/The	1.823530
-STX	Seagate Technology Holdings PLC	1.723934
-PANW	Palo Alto Networks Inc	1.691619
-WDC	Western Digital Corp	1.512646
-RTX	RTX Corp	1.184057
-MS	Morgan Stanley	1.124884
-GS	Goldman Sachs Group Inc/The	1.110528
-VLO	Valero Energy Corp	1.058677
-DELL	Dell Technologies Inc	0.995632
-KLAC	KLA Corp	0.989427
-ADI	Analog Devices Inc	0.971320
-MRVL	Marvell Technology Inc	0.960128
-C	Citigroup Inc	0.933980
-WELL	Welltower Inc	0.923499
-MPC	Marathon Petroleum Corp	0.879752
-LITE	Lumentum Holdings Inc	0.789719
-CVS	CVS Health Corp	0.757178
-PSX	Phillips 66	0.734581
-BMY	Bristol-Myers Squibb Co	0.726572
-BNY	Bank of New York Mellon Corp/The	0.657237
-CB	Chubb Ltd	0.631208
-PLD	Prologis Inc	0.603449
-ROST	Ross Stores Inc	0.595921
-LMT	Lockheed Martin Corp	0.548472
-USB	US Bancorp	0.510588
-CSX	CSX Corp	0.502012
-TRV	Travelers Cos Inc/The	0.495809
-GLW	Corning Inc	0.494153
-HPE	Hewlett Packard Enterprise Co	0.487897
-PH	Parker-Hannifin Corp	0.473698
-CIEN	Ciena Corp	0.440693
-FDX	FedEx Corp	0.436733
-PNC	PNC Financial Services Group Inc/The	0.430433
-SPG	Simon Property Group Inc	0.424539
-MNST	Monster Beverage Corp	0.417985
-CMI	Cummins Inc	0.397698
-MAR	Marriott International Inc/MD	0.396780
-HWM	Howmet Aerospace Inc	0.394127
-NUE	Nucor Corp	0.392532
-TRGP	Targa Resources Corp	0.383153
-JCI	Johnson Controls International plc	0.380937
-TER	Teradyne Inc	0.379129
-PWR	Quanta Services Inc	0.372986
-GM	General Motors Co	0.370126
-TGT	Target Corp	0.340815
-STT	State Street Corp	0.318265
-KEYS	Keysight Technologies Inc	0.309451
-MPWR	Monolithic Power Systems Inc	0.299922
-FIX	Comfort Systems USA Inc	0.299649
-CAH	Cardinal Health Inc	0.281350
-AFL	Aflac Inc	0.279403
-WAB	Westinghouse Air Brake Technologies Corp	0.249721
-CNC	Centene Corp	0.245059
-VTR	Ventas Inc	0.241943
-STLD	Steel Dynamics Inc	0.224805
-DAL	Delta Air Lines Inc	0.224492
-NTAP	NetApp Inc	0.206233
-COHR	Coherent Corp	0.204394
-ADM	Archer-Daniels-Midland Co	0.199001
-BIIB	Biogen Inc	0.177503
-VTRS	Viatris Inc	0.168310
-CFG	Citizens Financial Group Inc	0.150715
-NTRS	Northern Trust Corp	0.149243
-FLEX	Flex Ltd	0.148675
-CASY	Casey's General Stores Inc	0.146604
-DGX	Quest Diagnostics Inc	0.132496
-PFG	Principal Financial Group Inc	0.129496
-HST	Host Hotels & Resorts Inc	0.121543
-EIX	Edison International	0.119077
-EXPD	Expeditors International of Washington Inc	0.115249
-JBHT	JB Hunt Transport Services Inc	0.103193
-APA	APA Corp	0.099898
-INCY	Incyte Corp	0.099479
-L	Loews Corp	0.092352
-DD	DuPont de Nemours Inc	0.090878
-NDSN	Nordson Corp	0.088407
-IEX	IDEX Corp	0.085631
-EVRG	Evergy Inc	0.081681
-AIZ	Assurant Inc	0.080280
-ECHO	EchoStar Corp	0.057420
-IVZ	Invesco Ltd	0.053514
-FRT	Federal Realty Investment Trust	0.052464
-BEN	Franklin Templeton Inc	0.045642
-DVA	DaVita Inc	0.030220
+AAPL	Apple Inc	10.253141
+MU	Micron Technology Inc	8.552993
+AMD	Advanced Micro Devices Inc	5.194612
+JNJ	Johnson & Johnson	4.907555
+GOOGL	Alphabet Inc	4.890427
+INTC	Intel Corp	4.388292
+GOOG	Alphabet Inc	3.935152
+XOM	ExxonMobil Holdings Corp	3.738823
+CSCO	Cisco Systems Inc	2.483194
+MRK	Merck & Co Inc	2.338399
+LRCX	Lam Research Corp	2.289119
+AMAT	Applied Materials Inc	2.234290
+SNDK	Sandisk Corp	2.142860
+UNH	UnitedHealth Group Inc	1.914084
+CAT	Caterpillar Inc	1.860188
+PANW	Palo Alto Networks Inc	1.815262
+KO	Coca-Cola Co/The	1.774683
+STX	Seagate Technology Holdings PLC	1.694016
+WDC	Western Digital Corp	1.468909
+RTX	RTX Corp	1.162498
+MS	Morgan Stanley	1.098405
+GS	Goldman Sachs Group Inc/The	1.091904
+VLO	Valero Energy Corp	1.042104
+DELL	Dell Technologies Inc	1.004065
+ADI	Analog Devices Inc	0.985510
+MRVL	Marvell Technology Inc	0.982609
+KLAC	KLA Corp	0.975378
+WELL	Welltower Inc	0.923952
+C	Citigroup Inc	0.920337
+MPC	Marathon Petroleum Corp	0.876578
+LITE	Lumentum Holdings Inc	0.794267
+CVS	CVS Health Corp	0.749730
+PSX	Phillips 66	0.731456
+BMY	Bristol-Myers Squibb Co	0.709767
+BNY	Bank of New York Mellon Corp/The	0.657562
+CB	Chubb Ltd	0.616379
+PLD	Prologis Inc	0.602943
+ROST	Ross Stores Inc	0.577844
+LMT	Lockheed Martin Corp	0.562219
+USB	US Bancorp	0.507263
+HPE	Hewlett Packard Enterprise Co	0.499039
+CSX	CSX Corp	0.493872
+GLW	Corning Inc	0.493355
+TRV	Travelers Cos Inc/The	0.487458
+PH	Parker-Hannifin Corp	0.467302
+CIEN	Ciena Corp	0.437807
+FDX	FedEx Corp	0.429620
+PNC	PNC Financial Services Group Inc/The	0.428735
+SPG	Simon Property Group Inc	0.424080
+MNST	Monster Beverage Corp	0.408518
+TRGP	Targa Resources Corp	0.400434
+CMI	Cummins Inc	0.396444
+NUE	Nucor Corp	0.392926
+MAR	Marriott International Inc/MD	0.391025
+JCI	Johnson Controls International plc	0.383812
+TER	Teradyne Inc	0.379562
+HWM	Howmet Aerospace Inc	0.379378
+PWR	Quanta Services Inc	0.369182
+GM	General Motors Co	0.364252
+TGT	Target Corp	0.329559
+STT	State Street Corp	0.318496
+KEYS	Keysight Technologies Inc	0.312954
+MPWR	Monolithic Power Systems Inc	0.293146
+CAH	Cardinal Health Inc	0.274879
+AFL	Aflac Inc	0.273359
+FIX	Comfort Systems USA Inc	0.272044
+WAB	Westinghouse Air Brake Technologies Corp	0.246235
+VTR	Ventas Inc	0.241623
+CNC	Centene Corp	0.241582
+STLD	Steel Dynamics Inc	0.226519
+DAL	Delta Air Lines Inc	0.217660
+NTAP	NetApp Inc	0.209256
+COHR	Coherent Corp	0.206028
+ADM	Archer-Daniels-Midland Co	0.199922
+BIIB	Biogen Inc	0.175464
+VTRS	Viatris Inc	0.164072
+NTRS	Northern Trust Corp	0.151237
+CFG	Citizens Financial Group Inc	0.150607
+FLEX	Flex Ltd	0.148528
+CASY	Casey's General Stores Inc	0.143792
+DGX	Quest Diagnostics Inc	0.131874
+PFG	Principal Financial Group Inc	0.127776
+HST	Host Hotels & Resorts Inc	0.120911
+EIX	Edison International	0.118052
+EXPD	Expeditors International of Washington Inc	0.115348
+APA	APA Corp	0.104930
+JBHT	JB Hunt Transport Services Inc	0.101224
+INCY	Incyte Corp	0.098528
+DD	DuPont de Nemours Inc	0.091918
+L	Loews Corp	0.091063
+NDSN	Nordson Corp	0.088528
+IEX	IDEX Corp	0.086507
+EVRG	Evergy Inc	0.081241
+AIZ	Assurant Inc	0.079216
+ECHO	EchoStar Corp	0.059665
+FRT	Federal Realty Investment Trust	0.052439
+IVZ	Invesco Ltd	0.052201
+BEN	Franklin Templeton Inc	0.045013
+DVA	DaVita Inc	0.029834
